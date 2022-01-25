@@ -1,3 +1,4 @@
+#include <termios.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,6 +6,7 @@
 #define mmsize 4080
 #define back 40
 #define fore 30
+struct termios oldt,newt;
 struct win{
 	int x;
 	int y;
@@ -71,4 +73,20 @@ void drawin(struct win *newwin){
 		printn(c,newwin->w);
 		nn=nn+newwin->w;
 	}
+}
+void refresh(){
+	locate(1,1);
+	printf("\n");
+}
+void startTerminal(){
+	tcgetattr(fileno(stdin),&oldt);
+	memcpy(&newt,&oldt,sizeof(struct termios));
+	newt.c_lflag &= ~(ECHO|ICANON);
+	newt.c_cc[VTIME]=0;
+	newt.c_cc[VMIN]=0;
+	tcsetattr(fileno(stdin),TCSANOW,&newt);
+}
+void endterminal(){
+	oldt.c_lflag|=ECHO|ICANON;
+	tcsetattr(fileno(stdin),TCSANOW,&oldt);
 }
