@@ -1,7 +1,4 @@
 #include <termios.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "fileList.h"
 
 #define mmsize 4080
