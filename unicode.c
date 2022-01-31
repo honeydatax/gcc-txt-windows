@@ -3,7 +3,7 @@
 char echar[10];
 char *getechar(char c){
 	char c1=195;
-	char c2=148;
+	char c2=167;
 	char c3=0;
 	char c4=0;
 	char c5=c & 0xff;
@@ -34,7 +34,7 @@ int main(){
 	replaceCharString(c,127,' ');
 	replaceCharString(c,8,' ');
 	replaceCharString(c,7,' ');
-	createWin(newwins,5,4,16,16,4,6);
+	createWin(newwins,5,4,32,16,4,6);
 	printwin(newwins,0,0,c);
 	drawin(newwins);
 	refresh();
