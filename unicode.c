@@ -1,25 +1,10 @@
 #include <unistd.h>
 #include "txtwin.h"
-char echar[10];
-char *getechar(char c){
-	char c1=195;
-	char c2=0x80;
-	char c3=0;
-	char c4=0;
-	char c5=c & 0xff;
-	c3=c5 & 0xf;
-	c4=(c5 & 0xf0)>>4;
-	c1=c1 + c3;
-	c2=c2 + c4;
-	echar[0]=c1;
-	echar[1]=c2;
-	echar[2]=0;
-	return echar;
-}
 
 int main(){
 	char c[9000];
 	int n;
+	char *cc;
 	struct win newwin;
 	struct win *newwins;
 	newwins=&newwin;
@@ -27,7 +12,8 @@ int main(){
 	cls();
 	c[0]=0;
 	for(n=0;n<255;n++){
-		strcat(c,getechar(n));
+		cc=getechar(n);
+		if(cc[0]!='.')strcat(c,cc);
 	}
 	replaceCharString(c,'\n',' ');
 	replaceCharString(c,'\r',' ');

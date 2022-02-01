@@ -14,7 +14,19 @@ struct win{
 	int fcolors;
 	char *s;
 };
-
+char echar[10];
+char *getechar(char c){
+	if(c<0xa0){
+		echar[0]=195+(c & 0xf);
+		echar[1]=167+((c & 0xf0)>>4);
+		echar[2]=0;
+	}else{
+		echar[0]=0xc0+c/64;
+		echar[1]=0x80|c&0x3f;
+		echar[2]=0;
+	}
+	return echar;
+}
 void cls(){
 	printf("\ec");
 }
