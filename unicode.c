@@ -3,7 +3,7 @@
 char echar[10];
 char *getechar(char c){
 	char c1=195;
-	char c2=167;
+	char c2=0x80;
 	char c3=0;
 	char c4=0;
 	char c5=c & 0xff;
